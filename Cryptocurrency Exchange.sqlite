@@ -1,0 +1,34 @@
+-- Checking out the whole transactions table
+SELECT *
+FROM transactions;
+
+-- Total amount the user brought
+SELECT SUM(money_in)
+FROM transactions;
+
+-- Total amount the user sold
+SELECT SUM(money_out)
+FROM transactions;
+
+-- Number of money in transactions
+SELECT COUNT(money_in)
+FROM transactions;
+
+-- Number of money in transactions on Bitcoins
+SELECT COUNT(money_in)
+FROM transactions
+WHERE currency = 'BIT';
+
+-- Largest transaction
+SELECT MAX(money_in), MAX(money_out)
+FROM transactions;
+
+-- Average money in transaction on Ethereum
+SELECT AVG(money_in)
+FROM transactions
+WHERE currency = 'ETH';
+
+-- Ledger for different dates
+SELECT date, ROUND(AVG(money_in), 2), ROUND(AVG(money_out), 2)
+FROM transactions
+GROUP BY 1;
